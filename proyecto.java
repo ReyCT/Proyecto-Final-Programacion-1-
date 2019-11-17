@@ -18,7 +18,7 @@ public class proyecto
     private static Scanner scan = new Scanner(System.in);
     private static String input;
 
-    private static int espacio=11;
+    private static int espacio=10;
     private static ArrayList<String> matricula = new ArrayList<String>();
     private static ArrayList<String> nombre = new ArrayList<String>();
     private static ArrayList<String> genero = new ArrayList<String>();
@@ -28,10 +28,56 @@ public class proyecto
     {
         database();
 
-        admin();
+        System.out.println("\n   Bienvenido al sistema de registro");
+        System.out.println("   de ingreso de alumnos a biblioteca\n");
+        System.out.println("Ingrese nombre de usuario");
 
-        System.out.println("Gracias por usar el registro");
+        input = scan.nextLine();
+        if (input.equals("admin1"))
+        {
 
+        }
+        else
+        {
+            while (true)
+            {
+                System.out.println("Ingrese un nombre de usuario valido");
+                input = scan.nextLine();
+                if (input.equals("admin1"))
+                {
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+        }
+        System.out.println("Ingrese su contraseña");
+        input = scan.nextLine();
+        if (input.equals("password"))
+        {
+            System.out.println("Bienvenido: admin1");
+            admin();
+        }
+        else
+        {
+            while (true)
+            {
+                System.out.println("Ingresa una contraseña valida");
+                input = scan.nextLine();
+                if (input.equals("password"))
+                {
+                    System.out.println("Bienvenido: admin1");
+                    admin();
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+        }
     }
     public static void database()
     {
@@ -94,7 +140,8 @@ public class proyecto
 
         //con este for la aplicacion evaluara todas la matriculas en la database
         //hasta que coincida con alguna existente y muestre el mensaje de bienvenida
-        for (int i=0; i<espacio-1; i++)
+
+        for (int i=0; i<espacio; i++)
         {
             id = matricula.get(i);
             if (input.equals("cerrar"))
@@ -108,7 +155,8 @@ public class proyecto
                         loop = true;
                         out = true;
                         valid = true;
-                        break;
+                        admin();
+
                     }
                     else
                     {
@@ -118,7 +166,15 @@ public class proyecto
             }
             else if (input.equals(id))
             {
-                System.out.println("Bieenvenido(a)\n" + nombre.get(i));
+                if (genero.get(i).equals("hombre"))
+                {
+                    System.out.print("Bienvenido\n");
+                }
+                else
+                {
+                    System.out.print("Bienvenida\n");
+                }
+                System.out.println(nombre.get(i));
                 valid = true;
                 if (genero.get(i).equals("hombre"))
                 {
@@ -147,12 +203,20 @@ public class proyecto
             {
                 System.out.println("ingresa una matricula valida");
                 input = scan.nextLine();
-                for (int j = 0; j < espacio-1; j++)
+                for (int j=0; j<espacio; j++)
                 {
                     id = matricula.get(j);
                     if (input.equals(id))
                     {
-                        System.out.println("Bieenvenido(a)\n" + nombre.get(j));
+                        if (genero.get(j).equals("hombre"))
+                        {
+                            System.out.print("Bienvenido\n");
+                        }
+                        else
+                        {
+                            System.out.print("Bienvenida\n");
+                        }
+                        System.out.println(nombre.get(j));
                         valid=true;
                         //Esta seccion cuenta si son de prepa, uni, mujer u hombre
                         if (genero.get(j).equals("hombre"))
@@ -205,7 +269,6 @@ public class proyecto
                 }
             }
         }
-
     }
     public static void admin()
     {
@@ -223,6 +286,8 @@ public class proyecto
             {
                 if (input.equals("1"))
                 {
+                    System.out.println("             Bienvenido al sistema de alta de alumnos");
+                    System.out.println("   por favor introduzca los datos del alumno que desea registrar\n");
                     alta();
                 }
                 else if (input.equals("2"))
@@ -247,7 +312,8 @@ public class proyecto
                 }
                 else if (input.equals("4"))
                 {
-                    break;
+                    System.out.println("Gracias por usar el registro");
+                    System.exit(0);
                 }
             }
         }
@@ -269,8 +335,40 @@ public class proyecto
     {
         //esta seccion permite añadir nuevos alumnos al sistema
         String id;
+        boolean valido=false;
+        //Aqui el sistema determinara si la matricula ingresada esta dentro de los parametros de solo 5 numeros entre el 0 y el 9
         System.out.println("Ingrese matricula del alumno");
-        input = scan.nextLine();
+        while(true)
+        {
+            input = scan.nextLine();
+            char char1=' ';
+            for (int c=0; c<5; c++)
+            {
+                if (input.length()!=5)
+                {
+                    System.out.println("Solo se aceptan matriculas de 5 digitos con numeros del 0 al 9");
+                    System.out.println("Ingrese de nuevo la matricula");
+                    valido=false;
+                    break;
+                }
+                char1 = input.charAt(c);
+                if (char1==('0') || char1==('1') || char1==('2') || char1==('3') || char1==('4') || char1==('5') || char1==('6') || char1==('7') || char1==('8') || char1==('9'))
+                {
+                    valido=true;
+                }
+                else
+                {
+                    System.out.println("Solo se aceptan matriculas de 5 digitos con numeros del 0 al 9");
+                    System.out.println("Ingrese de nuevo la matricula");
+                    valido=false;
+                    break;
+                }
+            }
+            if (valido==true)
+            {
+                break;
+            }
+        }
         id=input;
         matricula.add(id);
 
@@ -321,12 +419,12 @@ public class proyecto
             {
                 if (input.equals("1"))
                 {
-                    genero.add(uni);
+                    nivel.add(uni);
                     break;
                 }
                 else
                 {
-                    genero.add(prepa);
+                    nivel.add(prepa);
                     break;
                 }
             }
