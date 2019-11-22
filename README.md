@@ -1,6 +1,6 @@
 # Proyecto-Final-Programacion-1-
 
-Este proyecto consiste en un sistema de registro de alumnos a biblioteca de CETYS Universidad
+Este proyecto consiste de sistema de registro de alumnos a biblioteca de CETYS Universidad
 el cual permite a un adminitrador ser el unico que pueda controlar las operaciones del sistema
 las cuales son:
 -Dar de alta alumnos en el sistema
