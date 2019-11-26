@@ -4,6 +4,7 @@ Este proyecto consiste de sistema de registro de alumnos a biblioteca de CETYS U
 el cual permite a un adminitrador ser el unico que pueda controlar las operaciones del sistema
 las cuales son:
 -Dar de alta alumnos en el sistema
+-Eliminar alumnos del sistema
 -Iniciar/Cerrar el registro de alumnos a la biblioteca
 -Crear un informe general de las visitas hechas durante del dia donde
  se muestre la cantidad de visitas, cuantos:hombre, mujeres, universitarios y preparatorianos accedieron,
