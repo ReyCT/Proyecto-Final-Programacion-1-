@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class proyecto
 {
+    //esta lista de counts llevara la cuenta de cada dato de los alumnos para despues imprimirlo en el informe
     private static int countvisitas;
     private static int countmen;
     private static int countwomen;
@@ -13,11 +14,11 @@ public class proyecto
     private static int countclase;
 
     private static boolean loop=false;
-    private static boolean salir=false;
 
     private static Scanner scan = new Scanner(System.in);
     private static String input;
 
+    //lista de arrays
     private static int espacio=10;
     private static ArrayList<String> matricula = new ArrayList<String>();
     private static ArrayList<String> nombre = new ArrayList<String>();
@@ -274,11 +275,11 @@ public class proyecto
     {
         //esta seccion despliega el menu para el administrador
         //que permitira añadir alumno, iniciar el sistema o crear el informe de las visitas
-        System.out.println("¿Que desea hacer?\n1 añadir alumno\n2 iniciar sistema de registro\n3 Crear informe de visitas\n4 Salir");
+        System.out.println("¿Que desea hacer?\n1 Añadir alumno\n2 Eliminar alumno\n3 Iniciar sistema de registro\n4 Crear informe de visitas\n5 Salir");
         while (true)
         {
             input = scan.nextLine();
-            if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4"))
+            if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals("5"))
             {
                 System.out.println("Ingresa una opcion valida");
             }
@@ -286,14 +287,24 @@ public class proyecto
             {
                 if (input.equals("1"))
                 {
+                    if (espacio==0)
+                    {
+                        System.out.println("No hay alumnos registrados");
+                        admin();
+                    }
                     System.out.println("             Bienvenido al sistema de alta de alumnos");
                     System.out.println("   por favor introduzca los datos del alumno que desea registrar\n");
                     alta();
                 }
                 else if (input.equals("2"))
                 {
+                    baja();
+                    admin();
+                }
+                else if (input.equals("3"))
+                {
                     loop=false;
-                    System.out.println("    Escriba 'cerrar' y luego ingrese su ccontraseña\n    cuando desee cerrar el sistema de registro\n");
+                    System.out.println("    Escriba 'cerrar' y luego ingrese su contraseña\n    cuando desee cerrar el sistema de registro\n");
                     while (true)
                     {
                         registro();
@@ -304,13 +315,13 @@ public class proyecto
                     }
                     admin();
                 }
-                else if (input.equals("3"))
+                else if (input.equals("4"))
                 {
                     informe();
                     System.out.println();
                     admin();
                 }
-                else if (input.equals("4"))
+                else if (input.equals("5"))
                 {
                     System.out.println("Gracias por usar el registro");
                     System.exit(0);
@@ -335,12 +346,36 @@ public class proyecto
     {
         //esta seccion permite añadir nuevos alumnos al sistema
         String id;
+        String id2;
         boolean valido=false;
+        boolean valido2=false;
         //Aqui el sistema determinara si la matricula ingresada esta dentro de los parametros de solo 5 numeros entre el 0 y el 9
         System.out.println("Ingrese matricula del alumno");
         while(true)
         {
-            input = scan.nextLine();
+
+            while(true)
+            {
+                input = scan.nextLine();
+                for (int i=0; i<espacio; i++)
+                {
+                    id2 = matricula.get(i);
+                    if (input.equals(id2))
+                    {
+                        System.out.println("La matricula ingresada ya existe, ingrese una nueva");
+                        valido2=false;
+                        break;
+                    }
+                    else
+                    {
+                        valido2=true;
+                    }
+                }
+                if (valido2==true)
+                {
+                    break;
+                }
+            }
             char char1=' ';
             for (int c=0; c<5; c++)
             {
@@ -431,6 +466,45 @@ public class proyecto
         }
         espacio++;
         admin();
+
+    }
+    public static void baja()
+    {
+        //esta seccion permite eliminar alumnos de la base de datos
+        boolean exist=false;
+        String id;
+        if (espacio==0)
+        {
+            System.out.println("No hay alumnos registrados");
+            admin();
+        }
+        System.out.println("Ingrese la matricula del alumno que desea eliminar");
+        while(true)
+        {
+            //en este apartado el sistema verificara que la matricula que se desee eliminar exista
+            input = scan.nextLine();
+            for (int i = 0; i < espacio; i++)
+            {
+                id = matricula.get(i);
+                if (input.equals(id))
+                {
+                    matricula.remove(i);
+                    nombre.remove(i);
+                    genero.remove(i);
+                    nivel.remove(i);
+                    espacio--;
+                    exist=true;
+                    System.out.println("Alumno eliminado\n");
+                    admin();
+                    break;
+                }
+
+            }
+            if (exist==false)
+            {
+                System.out.println("Ingrese una matricula existente");
+            }
+        }
 
     }
 }
