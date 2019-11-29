@@ -407,9 +407,32 @@ public class proyecto
         id=input;
         matricula.add(id);
 
+        boolean validname = false;
+        char ch1=' ';
         String name;
         System.out.println("Ingrese nombre del alumno");
-        input = scan.nextLine();
+        while(true)
+        {
+            input = scan.nextLine();
+            for (int i=0; i<input.length(); i++)
+            {
+                ch1 = input.charAt(i);
+                if (ch1==('1') || ch1==('2') || ch1==('3') || ch1==('4') || ch1==('5') || ch1==('6') || ch1==('7') || ch1==('8') || ch1==('9') || ch1==('0'))
+                {
+                    System.out.println("Ingrese un nombre valido");
+                    validname=false;
+                    break;
+                }
+                else
+                {
+                    validname=true;
+                }
+            }
+            if (validname==true)
+            {
+                break;
+            }
+        }
         name=input;
         nombre.add(name);
 
