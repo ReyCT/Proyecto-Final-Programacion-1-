@@ -25,8 +25,15 @@ public class proyecto
     private static ArrayList<String> genero = new ArrayList<String>();
     private static ArrayList<String> nivel = new ArrayList<String>();
 
+
     public static void main(String args[])
     {
+        /**
+         * main
+         * se ejecuta la validacion de usuario administrador y despliega el menu de opcines
+         * del sistema de registro
+         * @param args
+         */
         database();
 
         System.out.println("\n   Bienvenido al sistema de registro");
@@ -65,7 +72,7 @@ public class proyecto
         {
             while (true)
             {
-                System.out.println("Ingresa una contraseña valida");
+                System.out.println("Contraseña incorrecta");
                 input = scan.nextLine();
                 if (input.equals("password"))
                 {
@@ -82,6 +89,11 @@ public class proyecto
     }
     public static void database()
     {
+        /**
+         * database
+         * agrega un banco de alumnos establecidos por defecto al sistema
+         */
+
         //Matriculas predefinidas que se añadiran a la base de datos
         matricula.add("12189");
         matricula.add("12341");
@@ -133,6 +145,10 @@ public class proyecto
     }
     public static void registro()
     {
+        /**
+         * registro
+         * permite al administrador dar de alta alumnos al sistema
+         */
         boolean out = false;
         boolean valid = false;
         String id;
@@ -273,6 +289,10 @@ public class proyecto
     }
     public static void admin()
     {
+        /**
+         * admin
+         * este metodo despliega el menu de funciones del sistema al administrador
+         */
         //esta seccion despliega el menu para el administrador
         //que permitira añadir alumno, iniciar el sistema o crear el informe de las visitas
         System.out.println("¿Que desea hacer?\n1 Añadir alumno\n2 Eliminar alumno\n3 Iniciar sistema de registro\n4 Crear informe de visitas\n5 Salir");
@@ -331,6 +351,10 @@ public class proyecto
     }
     public static void informe()
     {
+        /**
+         * informe
+         * imprime el informe de las visitas hechas a la biblioteca, contando las caracteristicas del visitante.
+         */
         //esta seccion imprime el informe final de las visitas hechas a la biblioteca
         System.out.println("    Informe de visitas a biblioteca");
         System.out.println("Numero de visitas: "+countvisitas);
@@ -344,6 +368,10 @@ public class proyecto
     }
     public static void alta()
     {
+        /**
+         * alta
+         * permite al administrador agregar mas alumnos al sistema
+         */
         //esta seccion permite añadir nuevos alumnos al sistema
         String id;
         String id2;
@@ -493,6 +521,10 @@ public class proyecto
     }
     public static void baja()
     {
+        /**
+         * baja
+         * permite al administrador dar alumnos de baja del sistema
+         */
         //esta seccion permite eliminar alumnos de la base de datos
         boolean exist=false;
         String id;
